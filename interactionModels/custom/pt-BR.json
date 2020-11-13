@@ -1,0 +1,502 @@
+{
+  "interactionModel": {
+    "languageModel": {
+      "invocationName": "banco safra",
+      "intents": [
+        {
+          "name": "AMAZON.NavigateHomeIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.CancelIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.HelpIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.StopIntent",
+          "samples": []
+        },
+        {
+          "name": "ScheduleAppointmentIntent",
+          "slots": [
+            {
+              "name": "appointmentDate",
+              "type": "AMAZON.DATE"
+            },
+            {
+              "name": "appointmentTime",
+              "type": "AMAZON.TIME",
+              "samples": [
+                "que tal {appointmentTime}",
+                "às {appointmentTime}",
+                "{appointmentTime}"
+              ]
+            }
+          ],
+          "samples": [
+            "agendar",
+            "Quero falar com gerente em {appointmentDate} às {appointmentTime}",
+            "marque uma reunião em {appointmentDate} às {appointmentTime}",
+            "agende uma reunião em {appointmentDate} às {appointmentTime}",
+            "agende uma reunião às {appointmentTime} de {appointmentDate}",
+            "{appointmentTime} de {appointmentDate}",
+            "{appointmentDate} às {appointmentTime}",
+            "marque uma consulta para {appointmentDate} às {appointmentTime}",
+            "marque uma consulta para {appointmentDate}"
+          ]
+        },
+        {
+          "name": "AMAZON.YesIntent",
+          "samples": [
+            "sim"
+          ]
+        },
+        {
+          "name": "AMAZON.NoIntent",
+          "samples": [
+            "não"
+          ]
+        },
+        {
+          "name": "CheckAvailabilityIntent",
+          "slots": [
+            {
+              "name": "appointmentDate",
+              "type": "AMAZON.DATE",
+              "samples": [
+                "em {appointmentDate}",
+                "verifique {appointmentDate}",
+                "tente {appointmentDate}",
+                "{appointmentDate}"
+              ]
+            },
+            {
+              "name": "appointmentTime",
+              "type": "AMAZON.TIME",
+              "samples": [
+                "cheque {appointmentTime}",
+                "que tal {appointmentTime}",
+                "tente {appointmentTime}",
+                "{appointmentTime}"
+              ]
+            }
+          ],
+          "samples": [
+            "verificar disponibilidade"
+          ]
+        },
+        {
+          "name": "AssociarContaIntent",
+          "slots": [],
+          "samples": [
+            "abrir conta",
+            "cadastro",
+            "associação",
+            "sou associado"
+          ]
+        },
+        {
+          "name": "TransacaoIntent",
+          "slots": [
+            {
+              "name": "favorito",
+              "type": "favoritos",
+              "samples": [
+                "{favorito}"
+              ]
+            },
+            {
+              "name": "valor",
+              "type": "AMAZON.NUMBER",
+              "samples": [
+                "{valor}"
+              ]
+            }
+          ],
+          "samples": [
+            "boleto",
+            "doc",
+            "pix",
+            "ted",
+            "pagamento",
+            "transação"
+          ]
+        },
+        {
+          "name": "ContaIntent",
+          "slots": [],
+          "samples": [
+            "saldo",
+            "crédito",
+            "conta"
+          ]
+        },
+        {
+          "name": "ValidarAssociacaoContaIntent",
+          "slots": [],
+          "samples": [
+            "acessar",
+            "acesso",
+            "validar"
+          ]
+        },
+        {
+          "name": "AMAZON.FallbackIntent",
+          "samples": []
+        },
+        {
+          "name": "AudioIntent",
+          "slots": [],
+          "samples": [
+            "investimento",
+            "fundos",
+            "ações",
+            "notícias",
+            "mercado"
+          ]
+        }
+      ],
+      "types": [
+        {
+          "values": [
+            {
+              "name": {
+                "value": "fatura",
+                "synonyms": [
+                  "crédito",
+                  "Cartão"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "boleto",
+                "synonyms": [
+                  "Nextel",
+                  "Claro",
+                  "Vivo"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "banco",
+                "synonyms": [
+                  "Safra"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "empresa",
+                "synonyms": [
+                  "fiap"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "colega",
+                "synonyms": [
+                  "Fábio"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "amigo",
+                "synonyms": [
+                  "Diego",
+                  "Caio"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "primo",
+                "synonyms": [
+                  "João"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "pai",
+                "synonyms": [
+                  "José"
+                ]
+              }
+            },
+            {
+              "name": {
+                "value": "mãe",
+                "synonyms": [
+                  "mamãe",
+                  "Maria"
+                ]
+              }
+            }
+          ],
+          "name": "favoritos"
+        }
+      ]
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "ScheduleAppointmentIntent",
+          "confirmationRequired": true,
+          "prompts": {
+            "confirmation": "Confirm.Intent.153503252364"
+          },
+          "slots": [
+            {
+              "name": "appointmentDate",
+              "type": "AMAZON.DATE",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1593972337318.1345785653703"
+              },
+              "validations": [
+                {
+                  "type": "isInDuration",
+                  "prompt": "Slot.Validation.362475628407.1157681478773.1557208284837",
+                  "start": "P0D",
+                  "end": ""
+                }
+              ]
+            },
+            {
+              "name": "appointmentTime",
+              "type": "AMAZON.TIME",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.153503252364.190769526364"
+              }
+            }
+          ],
+          "delegationStrategy": "SKILL_RESPONSE"
+        },
+        {
+          "name": "CheckAvailabilityIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "appointmentDate",
+              "type": "AMAZON.DATE",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1202202710374.620761290647"
+              }
+            },
+            {
+              "name": "appointmentTime",
+              "type": "AMAZON.TIME",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1202202710374.903650749689"
+              }
+            }
+          ]
+        },
+        {
+          "name": "AssociarContaIntent",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": []
+        },
+        {
+          "name": "TransacaoIntent",
+          "confirmationRequired": true,
+          "prompts": {
+            "confirmation": "Confirm.Intent.1365350703063"
+          },
+          "slots": [
+            {
+              "name": "favorito",
+              "type": "favoritos",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.781430075848.905744354731"
+              },
+              "validations": [
+                {
+                  "type": "hasEntityResolutionMatch",
+                  "prompt": "Slot.Validation.781430075848.905744354731.114108943151"
+                }
+              ]
+            },
+            {
+              "name": "valor",
+              "type": "AMAZON.NUMBER",
+              "elicitationRequired": true,
+              "confirmationRequired": false,
+              "prompts": {
+                "elicitation": "Elicit.Slot.781430075848.673235407111"
+              },
+              "validations": [
+                {
+                  "type": "isGreaterThan",
+                  "prompt": "Slot.Validation.781430075848.673235407111.930829547218",
+                  "value": "0"
+                }
+              ]
+            }
+          ],
+          "delegationStrategy": "ALWAYS"
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.153503252364.817553974409",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Qual seria o melhor dia ou data para encontrar?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.153503252364.190769526364",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Qual o melhor horário para você consultar seu gerente?"
+          },
+          {
+            "type": "PlainText",
+            "value": "A que horas você gostaria de consultar seu gerente?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.153503252364.1550516431899",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Por favor me informe o seu nome completo."
+          },
+          {
+            "type": "PlainText",
+            "value": "Qual o seu nome completo?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.153503252364.16028220185",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Qual o seu número de telefone?"
+          }
+        ]
+      },
+      {
+        "id": "Confirm.Intent.153503252364",
+        "variations": [
+          {
+            "type": "SSML",
+            "value": "\u003cspeak\u003eVocê solicitou uma reunião com seu gerente safra em {appointmentDate} às {appointmentTime}. É isso mesmo?\u003c/speak\u003e"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.362475628407.1157681478773.1557208284837",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "A data precisa ser amanhã ou depois. Em qual data você gostaria de encontrar?"
+          },
+          {
+            "type": "PlainText",
+            "value": "A consulta precisa ser agendada com pelo menos um dia de antecedência. Quando você gostaria de encontrar?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1202202710374.620761290647",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Qual data você gostaria de verificar?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1202202710374.903650749689",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Qual horário vocêe gostaria de verificar?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.1593972337318.1345785653703",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Qual dia deseja se consultar com seu gerente safra?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.781430075848.905744354731",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Para quem deseja efetuar o pagamento?"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.781430075848.905744354731.114108943151",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Infelizmente, não encontrei o favorecido na sua lista de favoritos para receber transações. Por questões de segurança é necessário cadastrar. Deseja efetuar essa transação para outra pessoa?"
+          }
+        ]
+      },
+      {
+        "id": "Elicit.Slot.781430075848.673235407111",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "Qual o valor?"
+          }
+        ]
+      },
+      {
+        "id": "Slot.Validation.781430075848.673235407111.930829547218",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "O valor para transação deve ser maior que zero."
+          }
+        ]
+      },
+      {
+        "id": "Confirm.Intent.1365350703063",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "OK. Então, a transação é  para {favorito} no valor de {valor} reais. Você pode confirmar a palavra chave enviada?"
+          }
+        ]
+      }
+    ]
+  },
+  "version": "41"
+}

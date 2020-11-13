@@ -1,0 +1,55 @@
+{
+  "manifest": {
+    "publishingInformation": {
+      "locales": {
+        "pt-BR": {
+          "examplePhrases": [
+            "Alexa lance Agendador de Consultas",
+            "Alexa inicie Agendador de Consultas",
+            "Este skill foi criado utilizando o template Agendador de Consulta."
+          ],
+          "name": "HelloSafra",
+          "smallIconUri": "file://assets/images/pt-BR_smallIconUri.png",
+          "largeIconUri": "file://assets/images/pt-BR_largeIconUri.png"
+        }
+      }
+    },
+    "apis": {
+      "custom": {
+        "endpoint": {
+          "uri": "arn:aws:lambda:us-east-1:593945668151:function:d6f27b11-b275-4018-bd97-f5e074cb8f8d:Release_0"
+        },
+        "interfaces": [],
+        "regions": {
+          "EU": {
+            "endpoint": {
+              "uri": "arn:aws:lambda:eu-west-1:593945668151:function:d6f27b11-b275-4018-bd97-f5e074cb8f8d:Release_0"
+            }
+          },
+          "NA": {
+            "endpoint": {
+              "uri": "arn:aws:lambda:us-east-1:593945668151:function:d6f27b11-b275-4018-bd97-f5e074cb8f8d:Release_0"
+            }
+          },
+          "FE": {
+            "endpoint": {
+              "uri": "arn:aws:lambda:us-west-2:593945668151:function:d6f27b11-b275-4018-bd97-f5e074cb8f8d:Release_0"
+            }
+          }
+        }
+      }
+    },
+    "manifestVersion": "1.0",
+    "permissions": [
+      {
+        "name": "alexa::profile:name:read"
+      },
+      {
+        "name": "alexa::profile:email:read"
+      },
+      {
+        "name": "alexa::profile:mobile_number:read"
+      }
+    ]
+  }
+}
