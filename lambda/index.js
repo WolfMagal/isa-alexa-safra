@@ -139,7 +139,7 @@ const AudioIntentHandler = {
      && handlerInput.requestEnvelope.request.intent.name === 'AudioIntent'
   },
   handle(handlerInput) {
-    var audio = '<audio src="https://www.jovo.tech/audio/BT64Cwqp-morningcallsafra.mp3" />'
+    var audio = '<audio src="https://www.jovo.tech/audio/LinYGHLR-morningcallsafra.mp3" />'
     const speakOutput = 'Ouça a notícia mais atual: ' + audio;
     
     return handlerInput.responseBuilder
@@ -159,6 +159,7 @@ const TransacaoIntentHandler = {
     
     return handlerInput.responseBuilder
       .speak(speakOutput)
+      .reprompt("O que deseja fazer?")
       .getResponse();
   },
 };
@@ -181,9 +182,73 @@ const AssociarContaIntentHandler = {
     }
 };
 
-const ValidarAssociacaoContaIntentHandler = {
+const AssociarNovaContaIntentHandler = {
     canHandle(handlerInput) {
         return !CONTA_ASSOCIADA && Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            &&  handlerInput.requestEnvelope.request.intent.name === 'AMAZON.NoIntent';
+    },
+  async handle(handlerInput) {
+
+    const speakOutput = 'Você sabia que o Safra se preocupa com segurança e no daqui pra frente. Gostaria de tornar-se um cliente Safra já ou prefere saber mais sobre a gente?';
+    
+    return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt("O que deseja fazer?")
+            .getResponse();
+    }
+};
+
+const AssociarContaQueroSerSafraIntentHandler = {
+    canHandle(handlerInput) {
+        return !CONTA_ASSOCIADA && Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            &&  handlerInput.requestEnvelope.request.intent.name === 'AssociarContaQueroSerSafraIntent';
+    },
+  async handle(handlerInput) {
+
+    const speakOutput = 'Ótima escolha. Enviamos no seu e-mail um passo a passo para abertura da sua conta. Lembrando que você pode realizar todo esse processo de maneira digital no conforto da sua casa. Mas qualquer dúvida estou aqui pra te ajudar.';
+    
+    return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt("O que deseja fazer?")
+            .getResponse();
+    }
+};
+
+const ContaAssociadaSafraIntentHandler = {
+    canHandle(handlerInput) {
+        return CONTA_ASSOCIADA && Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            &&  handlerInput.requestEnvelope.request.intent.name === 'AssociarContaQueroSerSafraIntent';
+    },
+  async handle(handlerInput) {
+
+    const speakOutput = 'Opa, sua conta já está ativa. O que deseja?';
+    
+    return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt("O que deseja fazer?")
+            .getResponse();
+    }
+};
+
+const AssociarContaSaberMaisIntentHandler = {
+    canHandle(handlerInput) {
+        return !CONTA_ASSOCIADA && Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            &&  handlerInput.requestEnvelope.request.intent.name === 'AssociarContaSaberMaisIntent';
+    },
+  async handle(handlerInput) {
+
+    const speakOutput = 'O Safra te convida a pensar. E o daqui pra frente? Um lugar onde se sente seguro, é um bom lugar daqui pra frente. Cuidar mais das pessoas, das suas escolhas. Entender que valores importam. Detalhes fazem a diferença. O Safra está a 175 anos pensando sério no daqui para frente! Abra sua conta, invista como especialista. Diga quero ser SAFRA!';
+    
+    return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt("O que deseja fazer?")
+            .getResponse();
+    }
+};
+
+const ValidarAssociacaoContaIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
             && Alexa.getIntentName(handlerInput.requestEnvelope) === 'ValidarAssociacaoContaIntent';
     },
   async handle(handlerInput) {
@@ -223,6 +288,38 @@ const ContaIntentHandler = {
     }
 };
 
+const ContaNaoAssociadaIntentHandler = {
+    canHandle(handlerInput) {
+        return !CONTA_ASSOCIADA && Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'ContaIntent';
+    },
+  async handle(handlerInput) {
+    
+    const speakOutput = 'Sua conta ainda não está associada. Diga validar, para verificar se já é possível associar e começar a utilizar a ISA.';
+
+    return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt("O que deseja fazer?")
+            .getResponse();
+    }
+};
+
+const FallbackIntentHandler = {
+    canHandle(handlerInput) {
+        return Alexa.getRequestType(handlerInput.requestEnvelope) === 'IntentRequest'
+            && Alexa.getIntentName(handlerInput.requestEnvelope) === 'AMAZON.FallbackIntent';
+    },
+  handle(handlerInput) {
+   
+    const speakOutput = 'Opa, não entendi. Posso te dar dicas de investimento, respondo suas dúvidas, facilitar suas transações, te aproximo do banco de uma maneira simples e descomplicada. Queremos mais que somente te atender, queremos te OUVIR. No que posso te ajudar?';
+
+    return handlerInput.responseBuilder
+            .speak(speakOutput)
+            .reprompt("O que deseja?")
+            .getResponse();
+    }
+};
+
 const StartedInProgressScheduleAppointmentIntentHandler = {
   canHandle(handlerInput) {
     const { request } = handlerInput.requestEnvelope;
@@ -250,10 +347,10 @@ const StartedInProgressScheduleAppointmentIntentHandler = {
       const dateLocal = luxon.DateTime.fromISO(appointmentDate.value, { zone: userTimezone });
       const timeLocal = luxon.DateTime.fromISO(appointmentTime.value, { zone: userTimezone });
       const dateTimeLocal = dateLocal.plus({ 'hours': timeLocal.hour, 'minute': timeLocal.minute });
-      console.log('DATA =>' + luxon.DateTime.DATETIME_HUGE)
-      console.log('DATALOCAL =>' + dateTimeLocal.toLocaleString(luxon.DateTime.DATETIME_HUGE))
-      console.log('DATALOCAL =>' + getDateUtc(dateTimeLocal.toLocaleString(luxon.DateTime.DATETIME_HUGE)))
-      const speakDateTimeLocal = dateTimeLocal.toLocaleString(luxon.DateTime.DATETIME_HUGE);
+     // console.log('DATA =>' + luxon.DateTime.DATETIME_HUGE)
+     // console.log('DATALOCAL =>' + dateTimeLocal.toLocaleString(luxon.DateTime.DATETIME_HUGE))
+     // console.log('DATALOCAL =>' + getDateUtc(dateTimeLocal.toLocaleString(luxon.DateTime.DATETIME_HUGE)))
+      const speakDateTimeLocal = dateTimeLocal.setLocale('en-gb').toLocaleString(luxon.DateTime.DATETIME_SHORT);
 
       // custom intent confirmation for ScheduleAppointmentIntent
       if (currentIntent.confirmationStatus === 'NONE'
@@ -303,7 +400,8 @@ const CompletedScheduleAppointmentIntentHandler = {
     const dateLocal = luxon.DateTime.fromISO(appointmentDate.value, { zone: userTimezone });
     const timeLocal = luxon.DateTime.fromISO(appointmentTime.value, { zone: userTimezone });
     const dateTimeLocal = dateLocal.plus({ 'hours': timeLocal.hour, 'minute': timeLocal.minute || 0 });
-    const speakDateTimeLocal = dateTimeLocal.toLocaleString(luxon.DateTime.DATETIME_HUGE);
+    //const speakDateTimeLocal = dateTimeLocal.toLocaleString(luxon.DateTime.DATETIME_HUGE);
+    const speakDateTimeLocal = dateTimeLocal.setLocale('en-gb').toLocaleString(luxon.DateTime.DATETIME_SHORT);
 
     // set appontement date to utc and add 30 min for end time
     const startTimeUtc = dateTimeLocal.toUTC().toISO();
@@ -415,7 +513,8 @@ const CheckAvailabilityIntentHandler = {
     const dateLocal = luxon.DateTime.fromISO(appointmentDate.value, { zone: userTimezone });
     const timeLocal = luxon.DateTime.fromISO(appointmentTime.value, { zone: userTimezone });
     const dateTimeLocal = dateLocal.plus({ 'hours': timeLocal.hour, 'minute': timeLocal.minute || 0 });
-    const speakDateTimeLocal = dateTimeLocal.toLocaleString(luxon.DateTime.DATETIME_HUGE);
+    //const speakDateTimeLocal = dateTimeLocal.toLocaleString(luxon.DateTime.DATETIME_HUGE);
+    const speakDateTimeLocal = dateTimeLocal.setLocale('en-gb').toLocaleString(luxon.DateTime.DATETIME_SHORT);
 
     // set appontement date to utc and add 30 min for end time
     const startTimeUtc = dateTimeLocal.toUTC().toISO();
@@ -455,7 +554,7 @@ const CheckAvailabilityIntentHandler = {
 // This handler is used to handle 'yes' utternaces
 const YesIntentHandler = {
   canHandle(handlerInput) {
-    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+    return CONTA_ASSOCIADA && handlerInput.requestEnvelope.request.type === 'IntentRequest'
       && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.YesIntent';
   },
   handle(handlerInput) {
@@ -477,7 +576,7 @@ const YesIntentHandler = {
 // This handler is used to handle 'no' utternaces
 const NoIntentHandler = {
   canHandle(handlerInput) {
-    return handlerInput.requestEnvelope.request.type === 'IntentRequest'
+    return CONTA_ASSOCIADA && handlerInput.requestEnvelope.request.type === 'IntentRequest'
       && handlerInput.requestEnvelope.request.intent.name === 'AMAZON.NoIntent';
   },
   handle(handlerInput) {
@@ -512,7 +611,8 @@ const CancelAndStopIntentHandler = {
   canHandle(handlerInput) {
     return handlerInput.requestEnvelope.request.type === 'IntentRequest'
       && (handlerInput.requestEnvelope.request.intent.name === 'AMAZON.CancelIntent'
-        || handlerInput.requestEnvelope.request.intent.name === 'AMAZON.StopIntent');
+      || handlerInput.requestEnvelope.request.intent.name ===  'AMAZON.StopIntent'
+      ||  handlerInput.requestEnvelope.request.intent.name === 'AMAZON.PauseIntent');
   },
   handle(handlerInput) {
     const requestAttributes = handlerInput.attributesManager.getRequestAttributes();
@@ -849,8 +949,14 @@ exports.handler = Alexa.SkillBuilders.custom()
     AudioIntentHandler,
     TransacaoIntentHandler,
     AssociarContaIntentHandler,
+    AssociarNovaContaIntentHandler,
+    AssociarContaQueroSerSafraIntentHandler,
+    ContaAssociadaSafraIntentHandler,
+    AssociarContaSaberMaisIntentHandler,
     ValidarAssociacaoContaIntentHandler,
     ContaIntentHandler,
+    ContaNaoAssociadaIntentHandler,
+    FallbackIntentHandler,
     StartedInProgressScheduleAppointmentIntentHandler,
     CompletedScheduleAppointmentIntentHandler,
     CheckAvailabilityIntentHandler,

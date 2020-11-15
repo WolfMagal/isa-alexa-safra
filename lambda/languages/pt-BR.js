@@ -27,17 +27,18 @@ module.exports = {
       'Você gostaria de agendar uma consulta gerente safra?',
     ],
     CANCEL_STOP_RESPONSE: [
+      'Ok. No que posso te ajudar?',
       'Tchau',
       'Ok, estarei aqui se precisar de mim.',
     ],
     APPOINTMENT_CONFIRM: [
-      'Você está solicitando uma consulta com seu gerente safra %s para %s. Posso confirmar?',
+      'Você está solicitando uma consulta com seu gerente safra %s para %s horas. Posso confirmar?',
     ],
     APPOINTMENT_CONFIRM_REPROMPT: [
-      'Posso enviar a sua solicitação de consulta para %s?',
+      'Posso enviar a sua solicitação de consulta com %s?',
     ],
     APPOINTMENT_CONFIRM_COMPLETED: [
-      'Sua consulta com %s em %s foi agendada. Você também receberá uma confirmação via email. Por favor responda ao email de confirmação para cancelar ou reagendar. Obrigada.',
+      'Sua consulta com %s em %s horas foi agendada. Você também receberá uma confirmação via email. Por favor responda ao email de confirmação para cancelar ou reagendar. Obrigada.',
     ],
     TIME_AVAILABLE: [
       '%s está disponível. Você gostaria de agendar?',

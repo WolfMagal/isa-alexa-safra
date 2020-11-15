@@ -157,6 +157,21 @@
             "notícias",
             "mercado"
           ]
+        },
+        {
+          "name": "AssociarContaQueroSerSafraIntent",
+          "slots": [],
+          "samples": [
+            "ser safra"
+          ]
+        },
+        {
+          "name": "AssociarContaSaberMaisIntent",
+          "slots": [],
+          "samples": [
+            "mais",
+            "saber mais"
+          ]
         }
       ],
       "types": [
@@ -498,5 +513,5 @@
       }
     ]
   },
-  "version": "41"
+  "version": "46"
 }
