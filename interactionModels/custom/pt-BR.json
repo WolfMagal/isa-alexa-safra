@@ -148,9 +148,10 @@
           "samples": []
         },
         {
-          "name": "AudioIntent",
+          "name": "MorningCallsIntent",
           "slots": [],
           "samples": [
+            "Morning Calls",
             "investimento",
             "fundos",
             "ações",
@@ -162,6 +163,7 @@
           "name": "AssociarContaQueroSerSafraIntent",
           "slots": [],
           "samples": [
+            "quero ser safra",
             "ser safra"
           ]
         },
@@ -171,6 +173,37 @@
           "samples": [
             "mais",
             "saber mais"
+          ]
+        },
+        {
+          "name": "AMAZON.PauseIntent",
+          "samples": []
+        },
+        {
+          "name": "AMAZON.ResumeIntent",
+          "samples": []
+        },
+        {
+          "name": "FAQIntent",
+          "slots": [
+            {
+              "name": "Query",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "quero {Query}",
+            "procurar {Query}",
+            "encontrar {Query}",
+            "gostaria de saber {Query}",
+            "fazer {Query}",
+            "precisava {Query} ",
+            "fazer",
+            "precisava",
+            "gostaria de saber",
+            "dúvida",
+            "responde",
+            "faq"
           ]
         }
       ],
@@ -513,5 +546,5 @@
       }
     ]
   },
-  "version": "46"
+  "version": "56"
 }

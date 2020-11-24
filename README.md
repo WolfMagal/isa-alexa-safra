@@ -27,6 +27,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 - [Amazon Alexa](https://developer.amazon.com/)
 - [AWS Amazon](https://aws.amazon.com/)
+- [Watson Natural Language Understanding](https://natural-language-understanding-demo.ng.bluemix.net/?_ga=2.1261681.1545693594.1606099804-1855578334.1603764723&_gac=1.90509672.1603764723.Cj0KCQjw59n8BRD2ARIsAAmgPmKEiNjDHF5ScZGNl_Nk_mJhpPEyJTJtmdv9fphJrxZG-QKQ6j0mLGsaAmPFEALw_wcB&cm_mc_uid=32912961292916037647226&cm_mc_sid_50200000=10686531606181016972)
 - [Node.js](https://nodejs.org/en/)
 - [Google Apis](https://developers.google.com/)
 - [SendGrid Api](https://sendgrid.com/)

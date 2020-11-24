@@ -196,11 +196,16 @@ async function balanceGet(access_token) {
     return data;
 }
 
+function contaGet() {
+    return true;
+}
+
 
 module.exports = {
     httpGet,
     postAutenticacao,
     autenticacaoPost,
     accountGet,
-    balanceGet
+    balanceGet,
+    contaGet
 };

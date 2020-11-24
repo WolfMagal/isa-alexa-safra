@@ -19,7 +19,11 @@
         "endpoint": {
           "uri": "arn:aws:lambda:us-east-1:593945668151:function:d6f27b11-b275-4018-bd97-f5e074cb8f8d:Release_0"
         },
-        "interfaces": [],
+        "interfaces": [
+          {
+            "type": "AUDIO_PLAYER"
+          }
+        ],
         "regions": {
           "EU": {
             "endpoint": {

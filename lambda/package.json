@@ -21,7 +21,8 @@
     "luxon": "^1.24.1",
     "googleapis": "^52.1.0",
     "moment": "^2.24.0",
-    "moment-timezone": "^0.5.26"
+    "moment-timezone": "^0.5.26",
+    "ibm-watson": "^5.7.1"
   },
   "devDependencies": {
     "eslint": "^7.3.1",
