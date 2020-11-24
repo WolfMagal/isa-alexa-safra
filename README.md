@@ -12,7 +12,7 @@
 <br>
 
 <p align="center">
-  <img alt="ISA" src=".github/ISA.png" width="100%">
+  <img alt="ISA" src="assets/images/ISA.png" width="100%">
 </p>
 
 ## :memo: Sobre
