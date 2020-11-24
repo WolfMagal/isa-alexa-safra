@@ -22,13 +22,17 @@ module.exports = {
      && handlerInput.requestEnvelope.request.intent.name === 'FAQIntent'
   },
   async handle(handlerInput) {
-    console.log(handlerInput);
     var slotValue = handlerInput.requestEnvelope.request.intent.slots.Query.value;
     console.log(slotValue);
+    const watsonDiscovery = await WatsonApi.fetchWatsonDiscovery(slotValue);
+    console.log(watsonDiscovery);
     const watson = await WatsonApi.fetchWatsonAnalyze(slotValue);
     console.log(watson);
     let speakOutput = '';
-    if (watson.keywords.includes("ted")){
+    if (watsonDiscovery && watsonDiscovery !== null){
+         speakOutput = watsonDiscovery;
+    }
+    else if (watson.keywords.includes("ted")){
          speakOutput = 'Você pode realizar TED até ás 17:00h. Mas é possível realizar a transferência via PIX, vi que você já possui cadastro realizado. Se desejar transferir, diga PIX.';
     }
     else if (watson.keywords.includes("doc")){
@@ -41,7 +45,7 @@ module.exports = {
          speakOutput = 'Obrigado por sua colocação. Sugestões anotadas.';
     }
     else{
-         speakOutput = "Boa colocação. Esse é um ponto que vamos adicionar como melhoria, infelizemente ainda não temos uma responta para essa questão."
+         speakOutput = "Boa colocação. Esse é um ponto que vamos adicionar como melhoria, infelizmente ainda não temos uma resposta para essa questão."
     }
    
     return handlerInput.responseBuilder
